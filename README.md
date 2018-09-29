@@ -1,31 +1,9 @@
-# crescendo
+# Crescendo
 
-## Project setup
-```
-yarn install
-```
+Crescendo is a tool to help tutors manage their students.
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+## Developing
 
-### Compiles and minifies for production
 ```
-yarn run build
-```
-
-### Run your tests
-```
-yarn run test
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Run your unit tests
-```
-yarn run test:unit
+docker-compose up -d
 ```
