@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+    app:
+        build:
+            context: ./docker/dev
+            args:
+                HOST_USER_UID: ${HOST_USER_UID:-1000}
+                HOST_USER_GID: ${HOST_USER_GID:-1000}
+        container_name: crescendo-ui-app
+        ports:
+            - ${HOST_PORT:-8080}:8080
+        volumes:
+            - .:/app
+        environment:
+            HOST: 0.0.0.0
