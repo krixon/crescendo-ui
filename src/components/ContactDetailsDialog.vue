@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="open" max-width="600">
-    <v-card v-if="student">
+    <v-card v-if="contact">
       <v-img
         src="https://cdn.vuetifyjs.com/images/lists/ali.png"
         height="300px"
@@ -13,7 +13,7 @@
 
             <v-spacer></v-spacer>
 
-            <v-btn dark icon class="mr-3">
+            <v-btn dark icon class="mr-3" @click.stop="$emit('edit', contact)">
               <v-icon>edit</v-icon>
             </v-btn>
 
@@ -25,60 +25,46 @@
           <v-spacer></v-spacer>
 
           <v-card-title class="white--text pl-5 pt-5">
-            <div class="display-1 pl-5 pt-5">{{ student.name }}</div>
+            <div class="display-1 pl-5 pt-5">{{ contact.name }}</div>
           </v-card-title>
         </v-layout>
       </v-img>
 
       <v-list two-line>
-        <v-list-tile @click="">
+        <v-list-tile v-for="(phone, i) in contact.phones" :key="'p' + i">
           <v-list-tile-action>
-            <v-icon color="primary">phone</v-icon>
+            <v-icon v-if="i === 0" color="primary">phone</v-icon>
           </v-list-tile-action>
 
           <v-list-tile-content>
-            <v-list-tile-title>(650) 555-1234</v-list-tile-title>
-            <v-list-tile-sub-title>Mobile</v-list-tile-sub-title>
+            <v-list-tile-title>{{ phone.number }}</v-list-tile-title>
+            <v-list-tile-sub-title>{{ phone.type }}</v-list-tile-sub-title>
           </v-list-tile-content>
 
           <v-list-tile-action>
-            <v-icon>chat</v-icon>
-          </v-list-tile-action>
-        </v-list-tile>
-
-        <v-list-tile @click="">
-          <v-list-tile-action></v-list-tile-action>
-
-          <v-list-tile-content>
-            <v-list-tile-title>(323) 555-6789</v-list-tile-title>
-            <v-list-tile-sub-title>Work</v-list-tile-sub-title>
-          </v-list-tile-content>
-
-          <v-list-tile-action>
-            <v-icon>chat</v-icon>
+            <v-btn icon>
+              <v-icon color="grey">chat</v-icon>
+            </v-btn>
           </v-list-tile-action>
         </v-list-tile>
 
         <v-divider inset></v-divider>
 
-        <v-list-tile @click="">
+        <v-list-tile v-for="(email, i) in contact.emails" :key="'e' + i">
           <v-list-tile-action>
-            <v-icon color="primary">mail</v-icon>
+            <v-icon v-if="i === 0" color="primary">mail</v-icon>
           </v-list-tile-action>
 
           <v-list-tile-content>
-            <v-list-tile-title>{{ student.email }}</v-list-tile-title>
-            <v-list-tile-sub-title>Personal</v-list-tile-sub-title>
+            <v-list-tile-title>{{ email.address }}</v-list-tile-title>
+            <v-list-tile-sub-title>{{ email.type }}</v-list-tile-sub-title>
           </v-list-tile-content>
-        </v-list-tile>
 
-        <v-list-tile @click="">
-          <v-list-tile-action></v-list-tile-action>
-
-          <v-list-tile-content>
-            <v-list-tile-title>{{ student.email }}</v-list-tile-title>
-            <v-list-tile-sub-title>Work</v-list-tile-sub-title>
-          </v-list-tile-content>
+          <v-list-tile-action>
+            <v-btn icon>
+              <v-icon color="grey">mail</v-icon>
+            </v-btn>
+          </v-list-tile-action>
         </v-list-tile>
 
         <v-divider inset></v-divider>
@@ -100,10 +86,10 @@
 
 <script>
 export default {
-  name: 'StudentDetailsDialog',
+  name: 'ContactDetailsDialog',
   props: {
     value: Boolean,
-    student: Object
+    contact: Object
   },
   data () {
     return {
@@ -116,9 +102,7 @@ export default {
 
     },
     open (o) {
-      if (!o) {
-        this.$emit('input')
-      }
+      this.$emit('input', o)
     }
   }
 }

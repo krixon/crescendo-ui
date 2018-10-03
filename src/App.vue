@@ -113,7 +113,7 @@ export default {
     drawer: null,
     items: [
       { icon: 'mdi-view-dashboard', text: 'Dashboard', link: '/' },
-      { icon: 'contacts', text: 'Students', link: '/students' },
+      { icon: 'contacts', text: 'Contacts', link: '/contacts' },
       { icon: 'history', text: 'Frequently contacted' },
       { icon: 'lightbulb_outline', text: 'Notes' },
       { icon: 'touch_app', text: 'Reminders' },

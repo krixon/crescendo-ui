@@ -1,17 +1,17 @@
 <template>
-  <v-list-tile class="student-item" avatar @click.stop="$emit('selected', student)">
+  <v-list-tile class="contact-item" avatar @click.stop="$emit('select', contact)">
     <v-list-tile-avatar>
-      <img :src="student.avatar">
+      <img :src="contact.avatar">
     </v-list-tile-avatar>
 
     <v-list-tile-content>
-      <v-list-tile-title>{{ student.name }}</v-list-tile-title>
+      <v-list-tile-title>{{ contact.name }}</v-list-tile-title>
     </v-list-tile-content>
 
     <v-list-tile-action class="actions">
       <v-layout justify-end align-center>
         <v-btn icon @click.stop="">
-          <v-icon :color="student.active ? 'teal' : 'grey'">chat</v-icon>
+          <v-icon :color="contact.active ? 'teal' : 'grey'">chat</v-icon>
         </v-btn>
         <v-btn icon @click.stop="" class="ml-1">
           <v-icon color="grey">mdi-dots-vertical</v-icon>
@@ -23,22 +23,13 @@
 
 <script>
 export default {
-  name: 'StudentItem',
+  name: 'ContactItem',
   props: {
-    student: Object
+    contact: Object
   }
 }
 </script>
 
-<style scoped lang="scss">
-  .student-item {
+<style scoped>
 
-    &:hover .actions {
-      display: inherit;
-    }
-
-    .actions {
-      display: none;
-    }
-  }
 </style>

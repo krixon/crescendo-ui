@@ -353,7 +353,7 @@ Vue.component('v-checkbox', {
 // noinspection JSUnresolvedFunction
 Vue.component('v-chip', {
   props: {
-    close: Boolean,
+    closeDialog: Boolean,
     color: String,
     dark: Boolean,
     disabled: Boolean,
